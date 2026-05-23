@@ -1,0 +1,6 @@
+{
+  "name": "Encrypted Cloud Folder",
+  "description": "A secure media storage application featuring hierarchical folders, military-grade end-to-end encryption, and Over-the-Air (OTA) real-time file updates.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

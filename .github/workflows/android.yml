@@ -1,0 +1,41 @@
+name: Android CI Build
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    name: Build Secure Folder APK
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Generate Gradle Wrapper
+      run: gradle wrapper --gradle-version 8.5
+
+    - name: Make Gradlew executable
+      run: chmod +x gradlew
+
+    - name: Run Unit and Robolectric Tests
+      run: ./gradlew testDebugUnitTest
+
+    - name: Build Debug APK
+      run: ./gradlew :app:assembleDebug
+
+    - name: Upload Built APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: secure-folder-apk
+        path: app/build/outputs/apk/debug/app-debug.apk
