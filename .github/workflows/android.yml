@@ -23,7 +23,7 @@ jobs:
         cache: gradle
 
     - name: Generate Gradle Wrapper
-      run: gradle wrapper --gradle-version 8.5
+      run: gradle wrapper --gradle-version 9.3.1
 
     - name: Make Gradlew executable
       run: chmod +x gradlew
